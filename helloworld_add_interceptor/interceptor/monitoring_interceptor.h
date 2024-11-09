@@ -13,7 +13,7 @@ public:
     MonitoringInterceptor() = default;
 
     void Intercept(grpc::experimental::InterceptorBatchMethods* methods) override {
-        if (methods->QueryInterceptionHookPoint(grpc::experimental::InterceptionHookPoints::PRE_SEND_INITIAL_METADATA)) {
+        if (methods->QueryInterceptionHookPoint(grpc::experimental::InterceptionHookPoints::POST_RECV_MESSAGE)) {
             // 请求开始，记录开始时间
             start_time_ = std::chrono::high_resolution_clock::now();
             // 打印开始时间

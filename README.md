@@ -24,6 +24,16 @@ helloworld_auto_cmake/
 
 ## 四. 添加拦截器例子
 如代码 helloworld_add_interceptor 所示
+├── CMakeLists.txt
+├── interceptor
+│   ├── interceptor_factory.h
+│   └── monitoring_interceptor.h
+├── protos
+│   └── helloworld.proto
+├── README.md
+└── src
+    ├── greeter_client.cc
+    └── greeter_server.cc
 
 ## 五. 服务端注册多个服务
 

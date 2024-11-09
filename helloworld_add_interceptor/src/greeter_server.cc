@@ -21,12 +21,14 @@ class GreeterServiceImpl final : public Greeter::Service {
                   HelloReply* reply) override {
     std::string prefix("Hello ");
     reply->set_message(prefix + request->name());
+    sleep(3);
     return Status::OK;
   }
 };
 
 void RunServer() {
-  std::string server_address("0.0.0.0:50051");
+  // std::string server_address("0.0.0.0:50051");
+  std::string server_address("0.0.0.0:8081");
   GreeterServiceImpl service;
 
   ServerBuilder builder;

@@ -79,6 +79,9 @@ file(GLOB INTERCEPTOR_SOURCES "${INTERCEPTOR_DIR}/*.cpp")
 # 包含路径
 include_directories(${INTERCEPTOR_DIR})
 
+# 设置可执行文件输出目录
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 # 添加可执行文件
 add_executable(greeter_server src/greeter_server.cc)
 target_link_libraries(greeter_server PRIVATE protos gRPC::grpc++ Threads::Threads)
