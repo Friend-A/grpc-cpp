@@ -84,7 +84,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # 添加可执行文件
 add_executable(greeter_server src/greeter_server.cc)
-target_link_libraries(greeter_server PRIVATE protos gRPC::grpc++ Threads::Threads)
+target_link_libraries(greeter_server PRIVATE protos gRPC::grpc++ grpc++_reflection Threads::Threads)
 
 add_executable(greeter_client src/greeter_client.cc)
 target_link_libraries(greeter_client PRIVATE protos gRPC::grpc++ Threads::Threads)

@@ -35,6 +35,22 @@ helloworld_auto_cmake/
     ├── greeter_client.cc
     └── greeter_server.cc
 
+## 五. 添加reflection
+```
+安装grpc curl
+export GOPROXY=https://mirrors.aliyun.com/goproxy/
+go install github.com/fullstorydev/grpcurl/cmd/grpcurl
+
+copy bin/grpcurl 到 /usr/local/bin
+```
+使用grpcurl验证：
+```
+grpcurl -plaintext 127.0.0.1:8081 list
+grpcurl -plaintext localhost:8081 describe helloworld.Greeter.SayHello
+grpcurl -plaintext -d '{ "name": "9527" }' localhost:8081 helloworld.Greeter.SayHello
+```
+
+
 ## 五. 服务端注册多个服务
 
 ## 六. 优化和配置: 
@@ -43,6 +59,7 @@ helloworld_auto_cmake/
 性能优化: 使用多线程处理请求，通过负载均衡扩展服务  
 错误处理: 处理 gRPC 状态码和异常  
 Docker 部署: 创建 Dockerfile 并配置容器化部署  
+启用 Reflection，使用postman或者grpc-cli等工具可以直接列出开放了哪些grpc服务接口
 客户端连接复用：复用了相同的 Channel 实例  
 
 异步 I/O: 使用 gRPC 的异步 API 可以减少阻塞操作，提高并发处理能力  

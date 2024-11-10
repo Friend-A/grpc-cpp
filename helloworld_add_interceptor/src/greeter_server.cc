@@ -3,8 +3,9 @@
 #include <string>
 
 #include <grpcpp/grpcpp.h>
-#include "helloworld.grpc.pb.h"
+#include <grpcpp/ext/proto_server_reflection_plugin.h>
 
+#include "helloworld.grpc.pb.h"
 #include "monitoring_interceptor.h"
 #include "interceptor_factory.h"
 
@@ -30,6 +31,9 @@ void RunServer() {
   // std::string server_address("0.0.0.0:50051");
   std::string server_address("0.0.0.0:8081");
   GreeterServiceImpl service;
+
+  grpc::EnableDefaultHealthCheckService(true);
+  grpc::reflection::InitProtoReflectionServerBuilderPlugin();
 
   ServerBuilder builder;
   builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
