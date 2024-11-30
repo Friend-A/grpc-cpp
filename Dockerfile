@@ -25,11 +25,11 @@ RUN apt-get update && \
     unzip \
     && rm -rf /var/lib/apt/lists/*
 
-# 设置工作目录
-WORKDIR /opt
 
 # 克隆 gRPC 仓库, 经验证，该环境可以使用 1.57.0
-RUN git clone --recurse-submodules -b v1.57.0 https://github.com/grpc/grpc.git
+#WORKDIR /opt
+#RUN git clone --recurse-submodules -b v1.57.0 https://github.com/grpc/grpc.git
+COPY build_tmp/grpc /opt/grpc
 
 # 进入 gRPC 目录并构建 gRPC 和 Protobuf
 WORKDIR /opt/grpc
@@ -43,6 +43,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # 设置环境变量
 ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+#ENV LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH:-}
 ENV PATH=/usr/local/bin:$PATH
 
 # 验证安装

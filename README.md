@@ -3,6 +3,17 @@ Build a grpc-cpp environment
 
 ## 一. Dockerfile
 由于grpc cpp环境编译与构建不易，故提供已调试好的 Dockerfile，以便快速构建环境。
+```
+sudo docker build -t grpc_cpp_z:0.0.1 .
+
+docker run -it \
+--net=host \
+--restart=always \
+--name grpc_cpp_z \
+-v /home/z/grpc-cpp:/workspace/grpc-cpp \
+grpc_cpp_z:0.0.1
+
+```
 
 ## 二. helloworld
 一个简单的例子，验证grpc是否可以跑起来。包括
